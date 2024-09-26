@@ -28,11 +28,24 @@ def get_zodiac_sign(day, month):
         return "Invalid date"
 
 # Get user input
-day = int(input("Enter the day of your birth (1-31): "))
-month = int(input("Enter the month of your birth (1-12): "))
+While True:
+
+    day = int(input("Enter the day of your birth (1-31): "))
+   
+    if day < 1 or day > 31:
+        print("Invalid day. Please enter a valid day between 1 and 31.")
+        continue
+
+    month = int(input("Enter the month of your birth (1-12): "))
+    if month < 1 or month > 12:
+        print("Invalid month. Please enter a valid month between 1 and 12.")
+        continue
+
+    # Valid input, break out of the loop
+    break
 
 # Call the function and print the zodiac sign
-zodiac_sign = get_zodiac_sign(day, month)
-print(f"Your zodiac sign is: {zodiac_sign}")
+    zodiac_sign = get_zodiac_sign(day, month)
+    print(f"Your zodiac sign is: {zodiac_sign}")
 
 
