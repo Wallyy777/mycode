@@ -41,9 +41,9 @@ ansible_ssh_pass=alta3
 
 [aristaswitchessecure]
 ; description of our arista inventory
-sw-1
-sw-2
-    
+sw-1         ansible_host=sw-1
+sw-2         ansible_host=sw-2    
+
 [aristaswitchessecure:vars]
 ; variables specific to arista switches
 ansible_network_os=eos
