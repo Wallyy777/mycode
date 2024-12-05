@@ -1,0 +1,60 @@
+---
+- name: A playbook that manipulates data from uri
+  hosts: localhost
+
+  vars:
+    uritouse: "https://api.nhle.com/stats/rest/en/team"
+
+  tasks:
+
+  - name: Use URI module to send HTTP GET
+    ansible.builtin.uri:
+      method: GET
+      url: "{{ uritouse }}"
+    register: results
+    tags:
+      - data
+      - keys
+      - upper
+      - split
+
+  - name: Use python to show all dictionary keys with python
+    ansible.builtin.debug:
+      var: results.keys()   # .keys() is a python dict method
+    tags:
+      - keys
+
+  - name: Display fullName for each team and other values
+    debug:
+      msg: "fullName: {{ item.fullName }}"
+    loop: "{{ results.json.data }}"
+    tags:
+      - data
+
+  - name: Display ONLY the fullName for each team
+    debug:
+      msg: "fullName: {{ item.fullName }}"
+    loop: "{{ results.json.data }}"
+    loop_control:
+      label: "{{ item.id }}"
+    tags:
+      - data
+
+  - name: Loop across the teams and display the team locations made uppercase with python
+    ansible.builtin.debug:
+      var: "{{ item.fullName.upper() }}"  # .upper() is a python string method
+    loop: "{{ results.json.data }}"
+    loop_control:
+      label: "{{ item.id }}"
+    tags:
+      - upper
+
+  # Transform the team name into just the location: Florida Panthers into Florida.
+  - name: Loop across the team names and write out only the location of the team
+    vars:
+      split: "{{ item.fullName.split(' ', 1) }}"
+    shell: "echo {{ split[0] }} >> /tmp/teamlocations.txt"
+    loop: "{{ results.json.data }}"
+    tags:
+      - split
+
