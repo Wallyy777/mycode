@@ -1,4 +1,4 @@
----
+i---
 all:
   hosts:
     # if you had ungrouped hosts

@@ -11,7 +11,6 @@ sw-2
 
 [eosswitches:vars]
 ansible_network_os=eos 
-commandtoshowinterfaces="show ip int br"
 
 ; additional switch vendors can be described within their own group
 ; cisco ios switches could be described below
@@ -21,7 +20,6 @@ commandtoshowinterfaces="show ip int br"
 ;
 ;[iosswitches:vars]
 ;ansible_network_os=ios
-commandtoshowinterfaces="show ip int br"
 ;
 [junosswitches]
 ;sw-5
@@ -29,7 +27,6 @@ commandtoshowinterfaces="show ip int br"
 ;
 ;[junosswitches:vars]
 ;ansible_network_os=junos
-commandtoshowinterfaces="show ip int br"
 ;
 [nxosswitches]
 ;sw-6
@@ -37,7 +34,6 @@ commandtoshowinterfaces="show ip int br"
 ;
 ;[nxosswitches:vars]
 ;ansible_network_os=nxos
-commandtoshowinterfaces="show ip int br"
 ;
 [vyosswitches]
 ;sw-8
@@ -45,4 +41,3 @@ commandtoshowinterfaces="show ip int br"
 ;
 ;[vyosswitches:vars]
 ;ansible_network_os=vyos
-;commandtoshowinterfaces="show ip int br"
